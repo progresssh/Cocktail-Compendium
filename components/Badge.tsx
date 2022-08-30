@@ -14,7 +14,7 @@ interface BadgeProps {
 
 const Badge = ({
   color,
-  type,
+  type = 'info',
   children,
   onRemove,
   onClick,
