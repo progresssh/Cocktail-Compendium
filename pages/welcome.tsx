@@ -16,7 +16,7 @@ const Welcome: NextPage = () => {
       </span>
       <span className="mt-10">
         Ce projet n&apos;est qu&apos;une template basé sur notre stack favorite
-        à Curecall, mais ce n&apos;est pas pour autant qu&apos;il est figée ! Si
+        à Curecall, mais ce n&apos;est pas pour autant qu&apos;il est figé ! Si
         tu préfères faire du JS, Sass et j&apos;en passe, fonce !
       </span>
     </div>

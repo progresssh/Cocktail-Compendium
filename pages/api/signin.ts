@@ -19,15 +19,17 @@ export default async function handler(
       const user = users.find((u) => u.username === username)
 
       if (user && user.password === password) {
-        res.status(200).json({ user })
+        return res.status(200).json({ user })
       }
 
-      res.status(401).json({ message: 'Invalid username or password' })
+      return res.status(401).json({ message: 'Invalid username or password' })
     } else {
-      res.status(400).json({ message: 'Please provide username and password' })
+      return res
+        .status(400)
+        .json({ message: 'Please provide username and password' })
     }
   } else {
     res.setHeader('Allow', ['POST'])
-    res.status(405).end(`Method ${req.method} Not Allowed`)
+    return res.status(405).end(`Method ${req.method} Not Allowed`)
   }
 }

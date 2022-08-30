@@ -34,17 +34,19 @@ export default async function handler(
         users.push(newUser)
         await writeUsers(users)
 
-        res
+        return res
           .status(201)
           .json({ message: 'User created successfully', user: newUser })
       }
 
-      res.status(401).json({ message: 'Invalid username or password' })
+      return res.status(401).json({ message: 'Invalid username or password' })
     } else {
-      res.status(400).json({ message: 'Please provide username and password' })
+      return res
+        .status(400)
+        .json({ message: 'Please provide username and password' })
     }
   } else {
     res.setHeader('Allow', ['POST'])
-    res.status(405).end(`Method ${req.method} Not Allowed`)
+    return res.status(405).end(`Method ${req.method} Not Allowed`)
   }
 }

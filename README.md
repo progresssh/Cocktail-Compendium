@@ -1,3 +1,8 @@
+## Prerequisites
+
+- Node v16
+- yarn
+
 ## Installation
 
 ```bash
