@@ -30,7 +30,7 @@ export default async function handler(
       if (user) {
         res.status(400).json({ message: 'Username already exists' })
       } else {
-        const newUser = { username, password }
+        const newUser = { username, password, id: users.length + 1 }
         users.push(newUser)
         await writeUsers(users)
 
