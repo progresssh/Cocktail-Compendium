@@ -7,6 +7,7 @@ interface SigninResponse {
   message?: string
 }
 
+// Signin API endpoint
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<SigninResponse>,
