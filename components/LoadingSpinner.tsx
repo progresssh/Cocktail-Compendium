@@ -16,7 +16,7 @@ const LoadingSpinner = ({ fullPage, size = 'sm' }: Props) => {
       <svg
         role="status"
         className={twMerge(
-          'animate-spin mr-2 fill-primary text-gray-200',
+          'mr-2 animate-spin fill-primary text-gray-200',
           size === 'sm' && 'w-10',
           size === 'md' && 'w-12',
           size === 'lg' && 'w-16',

@@ -12,7 +12,9 @@ export interface ToastProps {
   message?: string
 }
 
-// You this function to show a toast, react-hot-toast is already set up.
+/*
+  You this function to show a toast, react-hot-toast is already set up for you.
+*/
 export const showToast = (
   toastProps: ShowToastOpts,
   toastOptions?: ToastOptions,

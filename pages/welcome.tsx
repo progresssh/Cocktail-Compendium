@@ -4,8 +4,8 @@ import LogoWithName from 'public/logo_with_name.png'
 
 const Welcome: NextPage = () => {
   return (
-    <div className="flex items-center h-screen flex-col mt-10">
-      <div className="w-72 mb-10">
+    <div className="mt-10 flex h-screen flex-col items-center">
+      <div className="mb-10 w-72">
         <Image src={LogoWithName} alt="Curecall logo" />
       </div>
       <span className="text-lg font-semibold">Hello ! 👋</span>
