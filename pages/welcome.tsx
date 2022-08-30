@@ -1,3 +1,4 @@
+import Toggle from 'components/Toggle'
 import type { NextPage } from 'next'
 import Image from 'next/image'
 import LogoWithName from 'public/logo_with_name.png'
