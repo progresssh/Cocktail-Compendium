@@ -7,6 +7,9 @@ import Link from 'next/link'
   Cet input doit nous permettre de rechercher des cocktails, par nom (voir https://www.thecocktaildb.com/api.php).
   Afficher les cocktails trouvés sous forme de liste.
   Une fois cette partie terminée, tu es libre de rajouter d'autres fonctionnalités bonus, comme la recherche par ingrédient, page détail, etc. (voir https://www.thecocktaildb.com/api.php)
+
+  Si tu bloques sur une partie, ne t'attarte pas dessus et passe à la suivante !
+
   Have fun !
 */
 
