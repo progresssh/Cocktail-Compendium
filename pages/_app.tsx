@@ -2,6 +2,7 @@ import '../global.css'
 import type { AppProps } from 'next/app'
 import { Toaster } from 'react-hot-toast'
 import Head from 'next/head'
+import CurrentUserProvider from 'contexts/CurrentUserContext'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -12,7 +13,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Toaster position="top-right" />
-      <Component {...pageProps} />
+      <CurrentUserProvider>
+        <Component {...pageProps} />
+      </CurrentUserProvider>
     </>
   )
 }

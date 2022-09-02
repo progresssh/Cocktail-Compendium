@@ -1,7 +1,8 @@
-import Button from 'components/Button'
 import Input from 'components/Input'
+import { useCurrentUserContext } from 'contexts/CurrentUserContext'
 import { NextPage } from 'next'
-import { useState } from 'react'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 
 /*
   [ ] - La home page doit être accessible seulement pour les personnes authentifiées (voir /api).
@@ -18,85 +19,28 @@ import { useState } from 'react'
 
   Have fun !
 */
-interface Request {
-  method: 'POST' | 'GET'
-  headers: { 'Content-Type': 'application/json' }
-  body: string
-}
-
-const SignInForm = () => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-
-  const handleClick = async () => {
-    const requestOptions: Request = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username: username, password: password }),
-    }
-    const response = await fetch(
-      'http://localhost:3000/api/signin',
-      requestOptions,
-    )
-
-    const data = await response.json()
-
-    if (!response.ok) {
-      console.log(data)
-    } else {
-      console.log(data)
-    }
-  }
-
-  return (
-    <form>
-      <Input label="Username" onChange={(e) => setUsername(e.target.value)} />
-      <Input label="Password" onChange={(e) => setPassword(e.target.value)} />
-      <Button onClick={handleClick}>Sign In</Button>
-    </form>
-  )
-}
-
-const SignUpForm = () => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-
-  const handleClick = async () => {
-    const requestOptions: Request = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username: username, password: password }),
-    }
-    const response = await fetch(
-      'http://localhost:3000/api/signup',
-      requestOptions,
-    )
-
-    const data = await response.json()
-
-    if (!response.ok) {
-      console.log(data)
-    } else {
-      console.log(data)
-    }
-  }
-
-  return (
-    <form>
-      <Input label="Username" onChange={(e) => setUsername(e.target.value)} />
-      <Input label="Password" onChange={(e) => setPassword(e.target.value)} />
-      <Button onClick={handleClick}>Sign Up</Button>
-    </form>
-  )
-}
-
 const Home: NextPage = () => {
+  const router = useRouter()
   const title = 'The Grand Cocktail Compendium'
+  const { currentUser } = useCurrentUserContext()
+
+  useEffect(() => {
+    if (
+      currentUser.username === undefined &&
+      currentUser.password === undefined
+    ) {
+      router.push('/welcome')
+    }
+  }, [currentUser, router])
   return (
     <>
-      <h1>{title}</h1>
-      <SignInForm />
-      <SignUpForm />
+      {currentUser.username !== undefined &&
+        currentUser.password !== undefined && (
+          <div>
+            <p>{`Welcome to the ${title}, ${currentUser.username} !`}</p>
+            <Input></Input>
+          </div>
+        )}
     </>
   )
 }
