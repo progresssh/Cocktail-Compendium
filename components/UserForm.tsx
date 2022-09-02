@@ -58,11 +58,12 @@ const UserForm = () => {
       className="flex flex-col space-y-2"
     >
       <Input
+        name="Username"
         label="Username"
-        type={'text'}
         onChange={(e) => setUsername(e.target.value)}
       />
       <Input
+        name="Password"
         label="Password"
         type={'password'}
         onChange={(e) => setPassword(e.target.value)}

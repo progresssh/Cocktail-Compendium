@@ -1,8 +1,12 @@
+import Button from 'components/Button'
 import Input from 'components/Input'
+import Select from 'components/Select'
 import { useCurrentUserContext } from 'contexts/CurrentUserContext'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import { Cocktail } from 'types/cocktail'
+import searchCocktailDB, { searchCocktailDBParams } from 'utils/search'
 
 /*
   [ ] - La home page doit être accessible seulement pour les personnes authentifiées (voir /api).
@@ -19,7 +23,43 @@ import { useEffect } from 'react'
 
   Have fun !
 */
+
+const SearchResults = () => {
+  return <ul>{}</ul>
+}
+
+const SearchForm = (
+  setData: Dispatch<SetStateAction<Record<string, unknown>>>,
+) => {
+  const [query, setQuery] = useState<searchCocktailDBParams>({
+    text: '',
+    type: 'cocktail',
+  })
+
+  const handleClick = async () => {
+    const data = await searchCocktailDB(query)
+
+    console.log(data)
+    setData(data)
+  }
+
+  return (
+    <form onClick={(e) => e.preventDefault()}>
+      <Input
+        name="Search"
+        label="Search for a cocktail..."
+        onChange={(e) => setQuery({ ...query, text: e.target.value })}
+      ></Input>
+
+      <Button type="submit" onClick={handleClick}>
+        Search
+      </Button>
+    </form>
+  )
+}
+
 const Home: NextPage = () => {
+  const [data, setData] = useState({})
   const router = useRouter()
   const title = 'The Grand Cocktail Compendium'
   const { currentUser } = useCurrentUserContext()
@@ -38,7 +78,8 @@ const Home: NextPage = () => {
         currentUser.password !== undefined && (
           <div>
             <p>{`Welcome to the ${title}, ${currentUser.username} !`}</p>
-            <Input></Input>
+            <SearchForm setData={setData} />
+            <SearchResults />
           </div>
         )}
     </>
