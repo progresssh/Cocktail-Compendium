@@ -9,7 +9,7 @@ const LoadingSpinner = ({ fullPage, size = 'sm' }: Props) => {
   return (
     <div
       className={twMerge(
-        'flex items-center justify-center',
+        'mt-8 flex items-center justify-center',
         fullPage && 'h-full',
       )}
     >

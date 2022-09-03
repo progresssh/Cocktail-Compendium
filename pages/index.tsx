@@ -1,20 +1,18 @@
-import Button from 'components/Button'
-import Input from 'components/Input'
-import Select from 'components/Select'
+import LoadingSpinner from 'components/LoadingSpinner'
+import SearchForm from 'components/SearchForm'
 import { useCurrentUserContext } from 'contexts/CurrentUserContext'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { Dispatch, SetStateAction, useEffect, useState } from 'react'
-import { Cocktail } from 'types/cocktail'
-import searchCocktailDB, { searchCocktailDBParams } from 'utils/search'
+import { useEffect, useState } from 'react'
+import { Cocktail, Drink } from 'types/cocktail'
 
 /*
-  [ ] - La home page doit être accessible seulement pour les personnes authentifiées (voir /api).
-  [ ] - La home page doit contenir un input.
-  [ ] - Cet input doit nous permettre de rechercher des cocktails, par nom (voir https://www.thecocktaildb.com/api.php).
-  [ ] - Afficher les cocktails trouvés sous forme de liste.
+  [x] - La home page doit être accessible seulement pour les personnes authentifiées (voir /api).
+  [x] - La home page doit contenir un input.
+  [x] - Cet input doit nous permettre de rechercher des cocktails, par nom (voir https://www.thecocktaildb.com/api.php).
+  [x] - Afficher les cocktails trouvés sous forme de liste.
   Bonus:
-  [ ] - Recherche par ingrédient
+  [x] - Recherche par ingrédient
   [ ] - Page détails
   [ ] - Find extra ideas w/ other API calls.
   https://www.thecocktaildb.com/api.php
@@ -24,42 +22,31 @@ import searchCocktailDB, { searchCocktailDBParams } from 'utils/search'
   Have fun !
 */
 
-const SearchResults = () => {
-  return <ul>{}</ul>
-}
-
-const SearchForm = (
-  setData: Dispatch<SetStateAction<Record<string, unknown>>>,
-) => {
-  const [query, setQuery] = useState<searchCocktailDBParams>({
-    text: '',
-    type: 'cocktail',
-  })
-
-  const handleClick = async () => {
-    const data = await searchCocktailDB(query)
-
-    console.log(data)
-    setData(data)
-  }
-
+const SearchResults = ({
+  cocktails,
+  isLoading,
+}: {
+  cocktails: Cocktail | null
+  isLoading: boolean
+}) => {
   return (
-    <form onClick={(e) => e.preventDefault()}>
-      <Input
-        name="Search"
-        label="Search for a cocktail..."
-        onChange={(e) => setQuery({ ...query, text: e.target.value })}
-      ></Input>
-
-      <Button type="submit" onClick={handleClick}>
-        Search
-      </Button>
-    </form>
+    <ul>
+      {isLoading && (
+        <div className="absolute">
+          <LoadingSpinner size="sm" />
+        </div>
+      )}
+      {cocktails?.drinks?.map((cocktail: Drink) => {
+        return <li key={cocktail.idDrink}>{cocktail.strDrink}</li>
+      })}
+    </ul>
   )
 }
 
 const Home: NextPage = () => {
-  const [data, setData] = useState({})
+  const [cocktails, setCocktails] = useState<Cocktail>(undefined!)
+  const [isLoading, setIsLoading] = useState(false)
+
   const router = useRouter()
   const title = 'The Grand Cocktail Compendium'
   const { currentUser } = useCurrentUserContext()
@@ -72,14 +59,18 @@ const Home: NextPage = () => {
       router.push('/welcome')
     }
   }, [currentUser, router])
+
   return (
     <>
       {currentUser.username !== undefined &&
         currentUser.password !== undefined && (
           <div>
             <p>{`Welcome to the ${title}, ${currentUser.username} !`}</p>
-            <SearchForm setData={setData} />
-            <SearchResults />
+            <SearchForm
+              setCocktails={setCocktails}
+              setIsLoading={setIsLoading}
+            />
+            <SearchResults cocktails={cocktails} isLoading={isLoading} />
           </div>
         )}
     </>
