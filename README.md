@@ -1,3 +1,7 @@
+# The Grand Cocktail Compendium
+
+My submission to the curecall technical test!
+
 ## Prerequisites
 
 - Node v16
