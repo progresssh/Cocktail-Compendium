@@ -7,7 +7,7 @@ import React, { useEffect } from 'react'
 import Particles from 'react-tsparticles'
 import type { Engine } from 'tsparticles-engine'
 import { loadStarsPreset } from 'tsparticles-preset-stars'
-import Cocktails from '../public/cocktails.png'
+import cocktailsImage from '../public/cocktails.png'
 
 export class ParticlesContainer extends React.PureComponent {
   // this customizes the component tsParticles installation
@@ -52,7 +52,12 @@ const Welcome: NextPage = () => {
           </div>
 
           <div className="pb-4">
-            <Image src={Cocktails} alt={'Picture of two Cocktails'} />
+            <Image
+              src={cocktailsImage}
+              width={122}
+              height={104}
+              alt={'Picture of two Cocktails'}
+            />
           </div>
           <UserForm />
         </div>
