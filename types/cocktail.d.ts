@@ -2,7 +2,41 @@ export interface Cocktail {
   drinks: Drink[]
 }
 
+export interface Ingredients_Mesures {
+  strIngredient1: null | string | undefined
+  strIngredient2: null | string | undefined
+  strIngredient3: null | string | undefined
+  strIngredient4: null | string | undefined
+  strIngredient5: null | string | undefined
+  strIngredient6: null | string | undefined
+  strIngredient7: null | string | undefined
+  strIngredient8: null | string | undefined
+  strIngredient9: null | string | undefined
+  strIngredient10: null | string | undefined
+  strIngredient11: null | string | undefined
+  strIngredient12: null | string | undefined
+  strIngredient13: null | string | undefined
+  strIngredient14: null | string | undefined
+  strIngredient15: null | string | undefined
+  strMeasure1: null | string | undefined
+  strMeasure2: null | string | undefined
+  strMeasure3: null | string | undefined
+  strMeasure4: null | string | undefined
+  strMeasure5: null | string | undefined
+  strMeasure6: null | string | undefined
+  strMeasure7: null | string | undefined
+  strMeasure8: null | string | undefined
+  strMeasure9: null | string | undefined
+  strMeasure10: null | string | undefined
+  strMeasure11: null | string | undefined
+  strMeasure12: null | string | undefined
+  strMeasure13: null | string | undefined
+  strMeasure14: null | string | undefined
+  strMeasure15: null | string | undefined
+}
+
 export interface Drink {
+  index: string
   idDrink: string
   strDrink: string
   strDrinkAlternate: null
@@ -20,36 +54,36 @@ export interface Drink {
   'strInstructionsZH-HANS': null
   'strInstructionsZH-HANT': null
   strDrinkThumb: string
-  strIngredient1: null | string
-  strIngredient2: null | string
-  strIngredient3: null | string
-  strIngredient4: null | string
-  strIngredient5: null | string
-  strIngredient6: null | string
-  strIngredient7: null | string
-  strIngredient8: null | string
-  strIngredient9: null | string
-  strIngredient10: null | string
-  strIngredient11: null | string
-  strIngredient12: null | string
-  strIngredient13: null | string
-  strIngredient14: null | string
-  strIngredient15: null | string
-  strMeasure1: null | string
-  strMeasure2: null | string
-  strMeasure3: null | string
-  strMeasure4: null | string
-  strMeasure5: null | string
-  strMeasure6: null | string
-  strMeasure7: null | string
-  strMeasure8: null | string
-  strMeasure9: null | string
-  strMeasure10: null | string
-  strMeasure11: null | string
-  strMeasure12: null | string
-  strMeasure13: null | string
-  strMeasure14: null | string
-  strMeasure15: null | string
+  strIngredient1: null | string | undefined
+  strIngredient2: null | string | undefined
+  strIngredient3: null | string | undefined
+  strIngredient4: null | string | undefined
+  strIngredient5: null | string | undefined
+  strIngredient6: null | string | undefined
+  strIngredient7: null | string | undefined
+  strIngredient8: null | string | undefined
+  strIngredient9: null | string | undefined
+  strIngredient10: null | string | undefined
+  strIngredient11: null | string | undefined
+  strIngredient12: null | string | undefined
+  strIngredient13: null | string | undefined
+  strIngredient14: null | string | undefined
+  strIngredient15: null | string | undefined
+  strMeasure1: null | string | undefined
+  strMeasure2: null | string | undefined
+  strMeasure3: null | string | undefined
+  strMeasure4: null | string | undefined
+  strMeasure5: null | string | undefined
+  strMeasure6: null | string | undefined
+  strMeasure7: null | string | undefined
+  strMeasure8: null | string | undefined
+  strMeasure9: null | string | undefined
+  strMeasure10: null | string | undefined
+  strMeasure11: null | string | undefined
+  strMeasure12: null | string | undefined
+  strMeasure13: null | string | undefined
+  strMeasure14: null | string | undefined
+  strMeasure15: null | string | undefined
   strImageSource: null | string
   strImageAttribution: null | string
   strCreativeCommonsConfirmed: string

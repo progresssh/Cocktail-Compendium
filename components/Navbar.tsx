@@ -1,14 +1,13 @@
 import { CurrentUser } from 'types/currentUser'
 
-const Navbar = ({ currentUser }: { currentUser: CurrentUser }) => {
+const Title = ({ currentUser }: { currentUser: CurrentUser }) => {
   const title = 'The Grand Cocktail Compendium'
 
   return (
-    <div>
-      <h1>{`Welcome to the ${title} !`}</h1>
-      <span>{currentUser.username}</span>
+    <div className="flex w-auto justify-center p-4 font-bold">
+      <h1>{`Welcome to the ${title} ${currentUser.username} !`}</h1>
     </div>
   )
 }
 
-export default Navbar
+export default Title

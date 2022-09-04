@@ -12,15 +12,18 @@ interface SearchFormProps {
 }
 
 const types = [
-  { label: 'Cocktails', value: 'cocktail' },
-  { label: 'Ingredients', value: 'ingredient' },
+  { label: 'Cocktails 🍸', value: 'cocktail' },
+  { label: 'Ingredients 🍋', value: 'ingredient' },
 ]
 
 const SearchForm = ({ setCocktails, setIsLoading }: SearchFormProps) => {
-  const [selectedItem, setSelectedItem] = useState<Item>(undefined!)
+  const [selectedItem, setSelectedItem] = useState<Item>({
+    label: '',
+    value: '',
+  })
   const [query, setQuery] = useState({
     text: '',
-    type: 'cocktail',
+    type: '',
     random: 'false',
   })
 
@@ -90,31 +93,40 @@ const SearchForm = ({ setCocktails, setIsLoading }: SearchFormProps) => {
   }
 
   return (
-    <form onClick={(e) => e.preventDefault()}>
-      <Input
-        name="Search"
-        label="Name"
-        required={true}
-        onChange={(e) => setQuery({ ...query, text: e.target.value })}
-      ></Input>
+    <form
+      onClick={(e) => e.preventDefault()}
+      className={'mt-2 flex justify-center  p-4 pb-16'}
+    >
+      <div className="space-y-4">
+        <Input
+          name="Search"
+          label="Name"
+          required={true}
+          onChange={(e) => setQuery({ ...query, text: e.target.value })}
+        />
 
-      <Select
-        items={types}
-        label={'Category'}
-        placeholder="Search drink by.."
-        selectedItem={selectedItem}
-        onChange={(e) => {
-          setQuery({ ...query, type: e.value })
-          setSelectedItem({ label: e.label, value: e.value })
-        }}
-      ></Select>
+        <div className="md:max-w-sm">
+          <Select
+            items={types}
+            label={'Category'}
+            placeholder="Search drink by.."
+            selectedItem={selectedItem}
+            onChange={(e) => {
+              setQuery({ ...query, type: e.value })
+              setSelectedItem({ label: e.label, value: e.value })
+            }}
+          />
+        </div>
 
-      <Button type="submit" onClick={handleClick}>
-        Search
-      </Button>
-      <Button type="submit" onClick={handleRandomClick}>
-        Try a random cocktail!
-      </Button>
+        <div className="flex space-x-2">
+          <Button type="submit" onClick={handleClick}>
+            Search
+          </Button>
+          <Button type="submit" onClick={handleRandomClick}>
+            Try a random cocktail !
+          </Button>
+        </div>
+      </div>
     </form>
   )
 }

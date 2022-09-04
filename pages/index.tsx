@@ -14,17 +14,11 @@ import { Cocktail } from 'types/cocktail'
   [x] - Afficher les cocktails trouvés sous forme de liste.
   Bonus:
   [x] - Recherche par ingrédient
-  [ ] - Page détails
-  [ ] - Find extra ideas w/ other API calls.
-  https://www.thecocktaildb.com/api.php
-
-  Si tu bloques sur une partie, ne t'attarte pas dessus et passe à la suivante !
-
-  Have fun !
+  [x] - Page détails
 */
 
 const Home: NextPage = () => {
-  const [cocktails, setCocktails] = useState<Cocktail>(undefined!)
+  const [cocktails, setCocktails] = useState<Cocktail>({ drinks: [] })
   const [isLoading, setIsLoading] = useState(false)
 
   const router = useRouter()
@@ -41,10 +35,10 @@ const Home: NextPage = () => {
   }, [currentUser, router])
 
   return (
-    <div className="p-4">
+    <div className="h-screen overflow-auto bg-gradient-to-r from-indigo-200 via-purple-200 to-pink-200 p-4">
       {currentUser.username !== undefined &&
         currentUser.password !== undefined && (
-          <div>
+          <div className="align-center flex w-full flex-col justify-center">
             <Navbar currentUser={currentUser} />
             <SearchForm
               setCocktails={setCocktails}
