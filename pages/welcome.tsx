@@ -40,18 +40,19 @@ const Welcome: NextPage = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center text-gray-300">
-        <div className="pb-16 text-center">
-          <h1>Welcome, please sign up or login to access the Compendium.</h1>
-          <span className="text-sm italic">
-            Behind this door is every cocktail you could ever dream of...
-          </span>
+      <div className="flex h-screen flex-col items-center justify-center">
+        <div className="align-center flex flex-col items-center rounded-3xl bg-slate-300 p-4">
+          <div className=" pb-16 text-center">
+            <h1>Welcome, please sign up or login to access the Compendium.</h1>
+            <span className="text-sm italic">
+              Behind this door is every cocktail you could ever dream of...
+            </span>
+          </div>
+
+          <UserForm />
         </div>
-
-        <UserForm />
+        <ParticlesContainer />
       </div>
-
-      <ParticlesContainer />
     </>
   )
 }

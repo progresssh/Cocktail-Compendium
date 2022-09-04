@@ -55,7 +55,7 @@ const UserForm = () => {
   return (
     <form
       onSubmit={(e) => e.preventDefault()}
-      className="flex flex-col space-y-2"
+      className="flex flex-col items-center justify-center space-y-2"
     >
       <Input
         name="Username"
@@ -68,13 +68,13 @@ const UserForm = () => {
         type={'password'}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <div className="align-center flex space-x-2">
-        <Button className="w-auto" type="submit" onClick={handleClick}>
+      <div className="flex flex-col items-center justify-center space-y-2">
+        <Button type="submit" onClick={handleClick}>
           {signingUp ? 'Sign Up' : 'Sign In'}
         </Button>
         <span
           onClick={() => setSigningUp(!signingUp)}
-          className="cursor-pointer self-center text-sm text-blue-600"
+          className="cursor-pointer self-center text-sm text-blue-900"
         >
           {signingUp ? 'Already have an account?' : "Don't have an account?"}
         </span>
