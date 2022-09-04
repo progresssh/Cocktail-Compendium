@@ -4,6 +4,7 @@ import { Request } from 'types/request'
 import Button from './Button'
 import Input from './Input'
 import Select, { Item } from './Select'
+import { showToast } from './Toast'
 
 interface SearchFormProps {
   setCocktails: Dispatch<SetStateAction<Cocktail>>
@@ -20,15 +21,19 @@ const SearchForm = ({ setCocktails, setIsLoading }: SearchFormProps) => {
   const [query, setQuery] = useState({
     text: '',
     type: 'cocktail',
+    random: 'false',
   })
 
-  const handleClick = async () => {
+  const handleRandomClick = async () => {
     setIsLoading(true)
-
     const requestOptions: Request = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query: query.text, type: query.type }),
+      body: JSON.stringify({
+        query: query.text,
+        type: query.type,
+        random: 'true',
+      }),
     }
 
     const response = await fetch(
@@ -36,8 +41,50 @@ const SearchForm = ({ setCocktails, setIsLoading }: SearchFormProps) => {
       requestOptions,
     )
 
-    const data: Cocktail = await response.json()
-    setCocktails(data)
+    const data = await response.json()
+
+    if (!response.ok) {
+      showToast({
+        type: 'error',
+        title: 'Error searching',
+        message: data.message,
+      })
+    } else {
+      setCocktails(data)
+    }
+
+    setIsLoading(false)
+  }
+
+  const handleClick = async () => {
+    setIsLoading(true)
+
+    const requestOptions: Request = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        query: query.text,
+        type: query.type,
+        random: 'false',
+      }),
+    }
+
+    const response = await fetch(
+      'http://localhost:3000/api/getCocktail',
+      requestOptions,
+    )
+
+    const data = await response.json()
+
+    if (!response.ok) {
+      showToast({
+        type: 'error',
+        title: 'Error searching',
+        message: data.message,
+      })
+    } else {
+      setCocktails(data)
+    }
 
     setIsLoading(false)
   }
@@ -47,6 +94,7 @@ const SearchForm = ({ setCocktails, setIsLoading }: SearchFormProps) => {
       <Input
         name="Search"
         label="Name"
+        required={true}
         onChange={(e) => setQuery({ ...query, text: e.target.value })}
       ></Input>
 
@@ -64,14 +112,8 @@ const SearchForm = ({ setCocktails, setIsLoading }: SearchFormProps) => {
       <Button type="submit" onClick={handleClick}>
         Search
       </Button>
-      <Button
-        type="submit"
-        onClick={() => {
-          setQuery({ text: '', type: 'random' })
-          handleClick()
-        }}
-      >
-        I&apos;m feeling lucky..
+      <Button type="submit" onClick={handleRandomClick}>
+        Try a random cocktail!
       </Button>
     </form>
   )

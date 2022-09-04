@@ -12,6 +12,16 @@ export default async function handler(
   if (req.method === 'POST') {
     const { query, type, random } = req.body
 
+    if (random === 'true') {
+      const response = await fetch(
+        `https://www.thecocktaildb.com/api/json/v1/1/random.php`,
+        requestOptions,
+      )
+
+      const data = await response.json()
+      return res.status(200).json(data)
+    }
+
     if (query && type) {
       switch (type) {
         case 'cocktail': {
@@ -26,7 +36,7 @@ export default async function handler(
           } else {
             return res
               .status(500)
-              .json({ message: 'No cocktails for this name' })
+              .json({ message: 'No such cocktails with this name.' })
           }
         }
 
@@ -35,23 +45,14 @@ export default async function handler(
             `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${query}`,
             requestOptions,
           )
-          if (response.ok) {
+          try {
             const data = await response.json()
             return res.status(200).json(data)
-          } else {
+          } catch (error) {
             return res
               .status(500)
               .json({ message: 'No avaliable cocktails for this ingredient' })
           }
-        }
-        case 'true': {
-          const response = await fetch(
-            `https://www.thecocktaildb.com/api/json/v1/1/random.php`,
-            requestOptions,
-          )
-
-          const data = await response.json()
-          return res.status(200).json(data)
         }
       }
     } else {
