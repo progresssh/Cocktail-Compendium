@@ -26,52 +26,64 @@ function Post({ post }: { post: Cocktail }) {
 
   const ingredients = getIngredients()
 
+  const BackButton = () => {
+    return (
+      <div className="p-2">
+        <button onClick={() => router.push('/')}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="h-6 w-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3"
+            />
+          </svg>
+        </button>
+      </div>
+    )
+  }
+
+  const Presentation = () => {
+    return (
+      <div className="flex flex-col-reverse items-center justify-center md:flex-row-reverse md:items-start ">
+        <div className="flex-col p-4 md:p-0 md:pl-4">
+          <h1 className="text-2xl font-bold">{drink.strDrink}</h1>
+          <div className="md:space-x-2">
+            <Badge type="info" className=" bg-blue-200 italic">
+              {drink.strAlcoholic}
+            </Badge>
+            <Badge type="info" className=" bg-blue-200 italic">
+              {drink.strGlass}
+            </Badge>
+            <Badge type="info" className=" bg-blue-200 italic">
+              {drink.strCategory}
+            </Badge>
+          </div>
+          <p>{drink.strInstructions}</p>
+        </div>
+        <Image
+          src={drink.strDrinkThumb}
+          height={200}
+          width={200}
+          alt={`Image of a ${drink.strDrink}`}
+          className={'rounded-3xl drop-shadow-md '}
+        />
+      </div>
+    )
+  }
+
   return (
     <div className="h-screen  w-screen overflow-auto bg-gradient-to-r from-indigo-200 via-purple-200 to-pink-200">
       <div className="space-y-4 p-4 md:w-1/2 md:p-16">
-        <div className="p-2">
-          <button onClick={() => router.push('/')}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="h-6 w-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3"
-              />
-            </svg>
-          </button>
-        </div>
+        <BackButton />
         <div className="flex justify-center md:justify-start ">
-          <div className="flex flex-col-reverse items-center justify-center md:flex-row-reverse md:items-start ">
-            <div className="flex-col p-4 md:p-0 md:pl-4">
-              <h1 className="text-2xl font-bold">{drink.strDrink}</h1>
-              <div className="md:space-x-2">
-                <Badge type="info" className=" bg-blue-200 italic">
-                  {drink.strAlcoholic}
-                </Badge>
-                <Badge type="info" className=" bg-blue-200 italic">
-                  {drink.strGlass}
-                </Badge>
-                <Badge type="info" className=" bg-blue-200 italic">
-                  {drink.strCategory}
-                </Badge>
-              </div>
-              <p>{drink.strInstructions}</p>
-            </div>
-            <Image
-              src={drink.strDrinkThumb}
-              height={200}
-              width={200}
-              alt={`Image of a ${drink.strDrink}`}
-              className={'rounded-3xl drop-shadow-md '}
-            />
-          </div>
+          <Presentation />
         </div>
         {drink.strVideo !== null && (
           <div className="pl-4 pr-4 md:p-0">
