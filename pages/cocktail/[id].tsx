@@ -114,8 +114,8 @@ function Post({ post }: { post: Cocktail }) {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: [{ params: { id: '' } }],
-    fallback: true,
+    paths: [],
+    fallback: 'blocking',
   }
 }
 
