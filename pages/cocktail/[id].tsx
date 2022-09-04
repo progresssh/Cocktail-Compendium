@@ -103,18 +103,16 @@ function Post({ post }: { post: Cocktail }) {
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [{ params: { id: '' } }],
-    fallback: true, // can also be true or 'blocking'
+    fallback: true,
   }
 }
 
-// `getStaticPaths` requires using `getStaticProps`
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const url = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${params?.id}`
   const res = await fetch(url)
   const post = await res.json()
 
   return {
-    // Passed to the page component as props
     props: { post },
   }
 }
