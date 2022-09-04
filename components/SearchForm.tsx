@@ -86,6 +86,7 @@ const SearchForm = ({ setCocktails, setIsLoading }: SearchFormProps) => {
         message: data.message,
       })
     } else if (query.type === 'ingredient') {
+      // This is required as the ingredient endpoint does not return type Drink, only very few informations are provided.
       const dataWithMetadata: Drink[] = []
       data.drinks.map(async (drink: Drink) => {
         const requestOptions: Request = {
