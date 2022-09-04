@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useState } from 'react'
-import { Cocktail } from 'types/cocktail'
+import { Cocktail, Drink } from 'types/cocktail'
 import { Request } from 'types/request'
 import Button from './Button'
 import Input from './Input'
@@ -85,7 +85,25 @@ const SearchForm = ({ setCocktails, setIsLoading }: SearchFormProps) => {
         title: 'Error searching',
         message: data.message,
       })
-    } else {
+    } else if (query.type === 'ingredient') {
+      const dataWithMetadata: Drink[] = []
+      data.drinks.map(async (drink: Drink) => {
+        const requestOptions: Request = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: drink.idDrink }),
+        }
+
+        const response = await fetch(
+          'http://localhost:3000/api/getCocktailById',
+          requestOptions,
+        )
+
+        const data = await response.json()
+        dataWithMetadata.push(data.drinks[0])
+        setCocktails({ drinks: dataWithMetadata })
+      })
+    } else if (query.type !== 'ingredient') {
       setCocktails(data)
     }
 

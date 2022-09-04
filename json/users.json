@@ -1,1 +1,9 @@
-{"users":[{"id":1,"username":"Paul","password":"1234"},{"username":"Curecall Wizard","password":"ophtalmology","id":2},{"username":"User0","password":"Passwordless","id":3},{"username":"Roch","password":"IamCTO","id":4},{"username":"Progress","password":"SH","id":5}]}
+{
+  "users": [
+    { "id": 1, "username": "Paul", "password": "1234" },
+    { "username": "Curecall Wizard", "password": "ophtalmology", "id": 2 },
+    { "username": "User0", "password": "Passwordless", "id": 3 },
+    { "username": "Roch", "password": "IamCTO", "id": 4 },
+    { "username": "Progress", "password": "SH", "id": 5 }
+  ]
+}
