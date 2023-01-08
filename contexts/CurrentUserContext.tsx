@@ -35,7 +35,7 @@ const CurrentUserProvider = ({ children }: CurrentUserProviderProps) => {
       body: JSON.stringify({ username: username, password: password }),
     }
     const response = await fetch(
-      'http://localhost:3000/api/signin',
+      'https://cocktail-compendium.vercel.app/api/signin',
       requestOptions,
     )
 
@@ -49,7 +49,7 @@ const CurrentUserProvider = ({ children }: CurrentUserProviderProps) => {
       body: JSON.stringify({ username: username, password: password }),
     }
     const response = await fetch(
-      'http://localhost:3000/api/signup',
+      'https://cocktail-compendium.vercel.app/api/signup',
       requestOptions,
     )
 
