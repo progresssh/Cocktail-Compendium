@@ -7,7 +7,7 @@ import React, { useEffect } from 'react'
 import Particles from 'react-tsparticles'
 import type { Engine } from 'tsparticles-engine'
 import { loadStarsPreset } from 'tsparticles-preset-stars'
-import cocktailsImage from '../public/cocktails.png'
+import cocktailsImage from '../public/Cocktails.png'
 
 export class ParticlesContainer extends React.PureComponent {
   // this customizes the component tsParticles installation
