@@ -40,7 +40,7 @@ const SearchForm = ({ setCocktails, setIsLoading }: SearchFormProps) => {
     }
 
     const response = await fetch(
-      'http://localhost:3000/api/getCocktail',
+      'https://cocktail-compendium.vercel.app/api/getCocktail',
       requestOptions,
     )
 
@@ -73,7 +73,7 @@ const SearchForm = ({ setCocktails, setIsLoading }: SearchFormProps) => {
     }
 
     const response = await fetch(
-      'http://localhost:3000/api/getCocktail',
+      'https://cocktail-compendium.vercel.app/api/getCocktail',
       requestOptions,
     )
 
@@ -96,7 +96,7 @@ const SearchForm = ({ setCocktails, setIsLoading }: SearchFormProps) => {
         }
 
         const response = await fetch(
-          'http://localhost:3000/api/getCocktailById',
+          'https://cocktail-compendium.vercel.app/api/getCocktailById',
           requestOptions,
         )
 
