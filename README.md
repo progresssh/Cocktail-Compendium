@@ -1,6 +1,6 @@
 # The Grand Cocktail Compendium
 
-My submission to the curecall technical test!
+**please use user:user to log in as a DB is not yet set-up**
 
 Features:
 
